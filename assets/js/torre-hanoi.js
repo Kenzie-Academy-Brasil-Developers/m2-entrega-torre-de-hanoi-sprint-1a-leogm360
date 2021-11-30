@@ -29,7 +29,7 @@ function startHanoi() {
     addStack();
     addId();
     addCircle(3, 200);
-    stackClick();
+    // stackClick();
 }
 
 function addStack() {
@@ -65,27 +65,46 @@ function addCircle(quant, maxWidth) {
     }
 }
 
-function stackClick() {
-    let arr = [];
-    const section = document.querySelectorAll(".game--area section");
-    const numerateIdZero = document.querySelector("div#select-0");
-    const numerateIdOne = document.querySelector("div#select-1");
-    const numerateIdTwo = document.querySelector("div#select-2");
-    section[0].addEventListener('click', function (e) {
-        arr.push(numerateIdZero.lastElementChild);
-        console.log(e.currentTarget);
-        console.log(numerateIdZero.lastElementChild);
-    });
-    section[1].addEventListener("click" , function (e) {
-        numerateIdOne.appendChild(arr[0])
-        arr.pop()
-        console.log(arr)
-    });
-    section[2].addEventListener("click" , function (e) {
-        numerateIdTwo.appendChild(arr[0])
-        arr.pop()
-        console.log(arr)
-    });
+        // const numerateIdZero = document.querySelector("div#select-0");
+        // const numerateIdOne = document.querySelector("div#select-1");
+        // const numerateIdTwo = document.querySelector("div#select-2");
+
+gameArea.addEventListener('click', stackClick);
+let arr = [];
+let verif = false
+let target = '';
+let pai = '';
+function stackClick(e) {
+    target = e.target
+    if (verif === false) {
+        verif = true
+        pai = e.target.parentNode;
+        console.log(pai);
+    }
+    if (target.className === "circle") {
+        const lastElement = target.closest("div.stack").lastElementChild
+        arr.push(lastElement)
+        arr[0].remove()
+    }
+    switchClique(target, arr, pai)
+}
+
+function switchClique(e, arr, paiEl) {
+    console.log(paiEl)
+    if (e.className === "stack") {
+        if (e.children.length >= 0) {
+            arr.length > 0 ? e.appendChild(arr[0]) : false
+            console.log(paiEl);
+            if(e.children[0].clientWidth < e.lastElementChild.clientWidth){
+                paiEl.appendChild(arr[0])
+                verif = false
+            }else{
+                e.appendChild(arr[0])
+                verif = false
+            }
+            arr.pop()
+        }
+    }
 }
 
 startHanoi();
