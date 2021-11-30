@@ -23,7 +23,7 @@ const arrayColors = ["blue", "red", "orange", "yellow", "pink", "gray"];
 // START exports
 // END exports
 
-const main = document.querySelector("main");
+const gameArea = document.querySelector("#game-area");
 
 function startHanoi() {
     addStack();
@@ -40,7 +40,7 @@ function addStack() {
         sectionBox.id = `section-${i}`;
         stack.classList.add("stack");
 
-        main.appendChild(sectionBox);
+        gameArea.appendChild(sectionBox);
         sectionBox.appendChild(stack);
     }
 }
@@ -67,26 +67,22 @@ function addCircle(quant, maxWidth) {
 
 function stackClick() {
     let arr = [];
-    let arr2 = [];
-    let arr3 = [];
-    const section = document.querySelectorAll("section");
+    const section = document.querySelectorAll(".game--area section");
     const numerateIdZero = document.querySelector("div#select-0");
     const numerateIdOne = document.querySelector("div#select-1");
     const numerateIdTwo = document.querySelector("div#select-2");
     section[0].addEventListener('click', function (e) {
-        arr.push(numerateIdZero.lastElementChild)
-        console.log(numerateIdZero.lastElementChild)
-        arr[0].remove();
+        arr.push(numerateIdZero.lastElementChild);
+        console.log(e.currentTarget);
+        console.log(numerateIdZero.lastElementChild);
     });
     section[1].addEventListener("click" , function (e) {
-        arr2.push(numerateIdOne.lastElementChild)
         numerateIdOne.appendChild(arr[0])
         arr.pop()
         console.log(arr)
     });
     section[2].addEventListener("click" , function (e) {
-        arr2.push(numerateIdTwo.lastElementChild)
-        numerateIdTwo.appendChild(arr2[0])
+        numerateIdTwo.appendChild(arr[0])
         arr.pop()
         console.log(arr)
     });
