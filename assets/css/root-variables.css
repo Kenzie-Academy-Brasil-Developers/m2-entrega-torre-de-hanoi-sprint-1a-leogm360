@@ -2,10 +2,23 @@
 /* END imports */
 
 /* START fontface */
+    @font-face {
+        font-family: 'Hanoi';
+        src: url(../fonts/títulos/Hanoi-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: 'Noto Sans';
+        src: url(../fonts/subtítulo-texto/NotoSans-Regular.ttf) format("ttf"),
+        url(../fonts/subtítulo-texto/NotoSans-Bold.ttf) format("ttf");
+    }
 /* END fontface */
 
 /* START root-variables */
     :root{
-    
+        /* START fonts */
+        --font-family-title: 'Hanoi', sans-serif;
+        --font-family-subtitle-text: 'Noto Sans', sans-serif;
+        /* END fonts */
     }
 /* END root-variables */

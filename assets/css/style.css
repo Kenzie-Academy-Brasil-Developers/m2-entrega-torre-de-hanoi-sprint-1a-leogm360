@@ -1,22 +1,142 @@
 /* START imports */
+    @import url(./root-variables.css);
+
+    @import url(./animations.css);
 /* END imports */
 
 /* START general */
+    .flex--row{
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .flex--col{
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .titles{
+        font-family: var(--font-family-title);
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .subtitles{
+        font-family: var(--font-family-subtitle-text);
+        font-size: 18px;
+        font-weight: bold;
+    }
 /* END general */
 
 /* START html */
+    html{}
 /* END html */
 
 /* START body */
+    body{
+        font-family: var(--font-family-subtitle-text);
+        max-width: 100vw;
+        min-height: 100vh;
+    }
 /* END body */
 
 /* START header */
-/* END header */
+    .header{
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    }
 
-/* START main */
+    .header__logo{
+        width: 100px;
+        height: 100px;
+    }
+    .logo--image{
+        width: 100%;
+        height: 100%;
+    }
+    .logo--caption {
+        display: none;
+    }
+
+    .header__title{}
+    /* END header */
+
+    /* START main */
+    .main{}
+
+    .main__info{
+        padding: 30px 25px;
+    }
+
+    .info--article{}
+
+    .article--container{}
+
+    .container--title{
+        margin: 15px 0;
+    }
+
+    .container--quotes{
+        line-height: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .container--citation{
+        display: block;
+        text-align:  right;
+    }
+
+    .citation--semantic{}
+
+    .semantic--anchor{
+        font-style: italic;
+        color: #1649c9;
+        text-decoration: none;
+    }
+
+    .semantic--anchor:visited{
+        color: darkblue;
+    }
+
+    .container--unordered{}
+
+    .unordered--item{
+        line-height: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .container--ordered{
+        padding: 0 25px;
+    }
+
+    .ordered--item{
+        list-style: upper-roman;
+        line-height: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;     
+    }
+
+    .main__game{}
+    .game--area{}
 /* END main */
 
 /* START footer */
+    .footer{
+        text-align: center;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+        padding: 25px 15px;
+    }
+
+    .footer__creators{
+        margin-bottom: 10px;
+    }
+
+    .footer__copyright{
+
+    }
 /* END footer */
 
 /* START extras */
