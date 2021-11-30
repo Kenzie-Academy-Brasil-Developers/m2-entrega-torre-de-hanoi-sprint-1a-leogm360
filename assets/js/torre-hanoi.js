@@ -1,29 +1,6 @@
 const arrayColors = ["blue", "red", "orange", "yellow", "pink", "gray"];
-//START imports
-//END imports
-
-//START global-variables
-//END global-variables
-
-//START dynamic-content-header
-//END dynamic-content-header
-
-//START dynamic-content-main
-//END dynamic-content-main
-
-//START dynamic-content-footer
-//END dynamic-content-footer
-
-//START functions-call
-//START functions-call
-
-//START event-listeners
-//END event-listeners
-
-// START exports
-// END exports
-
 const gameArea = document.querySelector("#game-area");
+let contador = 0;
 
 function startHanoi() {
     addStack();
@@ -65,17 +42,15 @@ function addCircle(quant, maxWidth) {
     }
 }
 
-        // const numerateIdZero = document.querySelector("div#select-0");
-        // const numerateIdOne = document.querySelector("div#select-1");
-        // const numerateIdTwo = document.querySelector("div#select-2");
-
 gameArea.addEventListener('click', stackClick);
 let arr = [];
 let verif = false
 let target = '';
 let pai = '';
 function stackClick(e) {
+    const numerateIdTwo = document.getElementById("select-2");
     target = e.target
+    console.log(target)
     if (verif === false) {
         verif = true
         pai = e.target.parentNode;
@@ -87,19 +62,25 @@ function stackClick(e) {
         arr[0].remove()
     }
     switchClique(target, arr, pai)
+    const textoVitoria = document.querySelector("#victory")
+    if (numerateIdTwo.childNodes.length === 3) {
+        textoVitoria.innerHTML = 'Voce venceu!'
+    }
 }
 
+const contadorH2 = document.querySelector("#contador")
 function switchClique(e, arr, paiEl) {
     console.log(paiEl)
     if (e.className === "stack") {
         if (e.children.length >= 0) {
             arr.length > 0 ? e.appendChild(arr[0]) : false
-            console.log(paiEl);
-            if(e.children[0].clientWidth < e.lastElementChild.clientWidth){
+            if (e.children[0].clientWidth < e.lastElementChild.clientWidth) {
                 paiEl.appendChild(arr[0])
                 verif = false
-            }else{
+            } else {
                 e.appendChild(arr[0])
+                contador++
+                contadorH2.innerHTML = contador
                 verif = false
             }
             arr.pop()
