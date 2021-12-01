@@ -76,11 +76,49 @@
         </section>
 
         <section class="main__game">
-            <div id="game-area" class="game--area">
+            <div id="game-control" class="flex--row game--control">
+                <div class="flex--row control--container">
+                    <h2 class="subtitles">
+                        Selecionado:
+                    </h2>
+                    
+                    <span id="control-selected" class="flex--row container--selected">
+                    </span>
+                </div>
 
+                <div class="control--container">
+                    <h2 class="subtitles">
+                        Jogadas:
+                    </h2>
+
+                    <span id="control-counter">
+                    </span>
+                </div>
+
+                <div class="control--container">
+                    <label for="levels" class="subtitles">
+                        Nível de dificuldade:
+                    </label>
+
+                     <select name="levels" id="levels" >
+                        <option value="level1">
+                            1
+                        </option>
+
+                         <option value="level2">
+                             2
+                         </option>
+
+                         <option value="level3">
+                             3
+                        </option>
+                     </select>
+                </div>     
             </div>
-            <h1 id="victory"></h1>
-            <h2 id="contador"></h2>
+
+            <div id="game-area" class="game--area">
+            
+            </div>
         </section>
     </main>
     
@@ -89,14 +127,14 @@
             Criado por: <cite>Leonardo Moraes</cite> e <cite>Lucas Dutra</cite>
         </p>
 
-        <span class="footer__copyright">&copy; Kenzie Academy Brasil - 2021</span>
+        <span class="footer__copyright">
+            &copy; Kenzie Academy Brasil - 2021
+        </span>
     </footer>
 
-    <!-- START sounds -->
-    <!-- START sounds -->
-
     <!-- START script -->
-        <script src="./assets/js/torre-hanoi.js"></script>
+        <script src="./assets/js/torre-hanoi.js">
+        </script>
     <!-- END script -->
 </body>
 </html>
