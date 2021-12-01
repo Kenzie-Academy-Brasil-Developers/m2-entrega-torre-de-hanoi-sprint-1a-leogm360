@@ -1,131 +1,179 @@
-const arrayColors = ["blue", "red", "orange", "yellow", "pink", "gray"];
-const gameArea = document.querySelector("#game-area");
-let contador = 0;
+//START global-variables
+    const gameArea = document.getElementById('game-area');
+    const levels = document.getElementById('levels');
 
-function startHanoi() {
-    addStack();
-    addId();
-    addCircle(5, 170);
-    // stackClick();
-}
+    let discsQuantity = 3;
+    let difficultyLevel = 'level1';
+//END global-variables
 
-function addStack() {
-    for (let i = 0; i < 3; i++) {
-        const sectionBox = document.createElement("section");
-        const stack = document.createElement("div");
+//START dynamic-content-main
+    const createStacks = () => {
+        const stacksArray = [];
+        let idCounter = 1;
 
-        sectionBox.id = `section-${i}`;
-        stack.classList.add("stack");
+        //create-three-stacks
+        for (let i = 1; i <= 3; i++) {
+            const stack = document.createElement("div");
 
-        gameArea.appendChild(sectionBox);
-        sectionBox.appendChild(stack);
-    }
-}
+            stack.classList.add("stack");
 
-function addId() {
-    const numerate = document.querySelectorAll("div.stack")
-    for (let i = 0; i < 3; i++) {
-        numerate[i].id = `select-${i}`;
-    }
-}
+            stack.setAttribute('id',`stack-${idCounter++}`);
 
-function addCircle(quant, maxWidth) {
-    let count = maxWidth;
-    const numerateId = document.querySelector("div#select-0");
-    
-    for (let i = 0; i < quant; i++) {
-        const circle = document.createElement("div");
-        circle.classList.add("circle");
-        numerateId.appendChild(circle);
-        circle.style.width = `${count -= 20}px`;
-        circle.style.backgroundColor = arrayColors[i];
-    }
-}
-
-gameArea.addEventListener('click', stackClick);
-let arr = [];
-let verif = false
-let target = '';
-let pai = '';
-const selectedCircle = document.getElementById('control-selected')
-
-function stackClick(e) {
-    const numerateIdTwo = document.getElementById("select-2");
-    target = e.target
-    const lastElement = target.closest("div.stack").lastElementChild;
-
-    if (verif === false) {
-        verif = true
-        pai = e.target.parentNode;
-    }
-
-    if (target.className === "circle" && selectedCircle.childElementCount < 1) {
-
-        selectedCircle.appendChild(lastElement);
-
-        // arr.push(lastElement)
-        // arr[0].remove()
-    }
-
-    switchClique(target)
-
-    const textoVitoria = document.querySelector("#victory")
-
-    if (numerateIdTwo.childNodes.length === 3) {
-        textoVitoria.innerHTML = 'Voce venceu!'
-    }
-}
-
-const contadorH2 = document.querySelector("#contador")
-
-function switchClique(e) {
-    //Variables
-    const circleToPut = selectedCircle.firstChild;
-   
-    const stackClass = e.className;
-
-    //Check-target
-    if (stackClass === "stack"){
-        //variables
-        const stackedCircles = e.childElementCount;
-
-        //check-empty-stack
-        if(stackedCircles === 0){
-            e.appendChild(circleToPut);
-            contador++;
-            contadorH2.innerHTML = contador;
+            stacksArray.push(stack);
         }
 
-        else{
-            //variables
-            const circleTopStackedWidth = e.lastElementChild.clientWidth;
-            const circleToPutWidth = circleToPut.clientWidth;
+        return stacksArray;
+    }
+
+    const createDiscs = (quantity) => {
+        const colorsArray = ["red", "orange", "yellow", "green", "blue", "purple"];
+        const discsArray = [];
+        let maxWidth = 150;
+        
+        //create-quantity-discs
+        for (let i = 0; i < quantity; i++) {
+            const disc = document.createElement("div");
+
+            disc.classList.add("circle");
+
+            disc.style.width = `${maxWidth -= 20}px`;
             
-            //check-width
-            circleToPutWidth < circleTopStackedWidth ? e.appendChild(circleToPut) : null;
+            disc.style.backgroundColor = colorsArray[i];
 
-            //counter
-            contador++;
-            contadorH2.innerHTML = contador;
+            discsArray.push(disc);
+        }
+
+        return discsArray;
+    }
+
+    const stackClick = (event) => {
+        const target = event.target;
+        const selectedCircle = document.getElementById('control-selected');
+        
+        //append-disc-to-selected
+        if (target.className === "circle" && selectedCircle.childElementCount < 1) {
+            const lastElement = target.closest("div.stack").lastElementChild;
+
+            selectedCircle.appendChild(lastElement);
         }
     }
 
-    // if (e.className === "stack") {
-    //     if (e.children.length >= 0) {
-    //         arr.length > 0 ? e.appendChild(arr  [0]) : false
-           
-    //         if (e.children[0].clientWidth < e.lastElementChild.clientWidth) {
-    //             paiEl.appendChild(arr[0])
-    //             verif = false
-    //         } else {
-    //             e.appendChild(arr[0])
-    //             contador++
-    //             contadorH2.innerHTML = contador
-    //             verif = false
-    //         }
-    //         arr.pop()
-    //     }
-    // }
-}
+    const checkVictory = () => {
+        const stackThreeDiscsCount = document.getElementById("stack-3").childElementCount;
 
-startHanoi();
+        if (stackThreeDiscsCount === discsQuantity) {
+            alert('voce venceu');
+        }
+    }
+
+    const countPlays = () => {
+        //counter
+        const countPlays = document.getElementById('control-counter');
+        let counter = countPlays.innerText;
+
+        counter++;
+        
+        countPlays.innerText = counter;
+    }
+
+    const switchClique = (event) => {
+        const target = event.target;
+        const circleToPut = document.getElementById('control-selected').firstChild;
+        const stackClass = target.className;
+
+        //check-target
+        if (stackClass === "stack"){
+            const stackedCircles = target.childElementCount;
+
+            //check-empty-stack
+            if(stackedCircles === 0){
+                target.appendChild(circleToPut);
+        
+                countPlays();
+
+                checkVictory();
+            }
+
+            else{
+                const circleTopStackedWidth = target.lastElementChild.clientWidth;
+                const circleToPutWidth = circleToPut.clientWidth;
+                
+                //check-width
+                circleToPutWidth < circleTopStackedWidth ? target.appendChild(circleToPut) : null;
+
+                countPlays();
+
+                checkVictory();
+            }
+        }
+    }
+
+    const startHanoi = (createStacks,createDiscs) => {
+        const stacks = createStacks;
+        const discs = createDiscs;
+        
+        //select-game-area
+        const area = document.querySelector("#game-area");  
+        
+        //append-stacks
+        stacks.forEach(item => area.appendChild(item));
+
+        //select-stack1
+        const stackOne = document.querySelector("#stack-1");
+
+        //append-discs
+        discs.forEach(item => stackOne.appendChild(item));
+    }
+
+    const setDifficultyLevel = (event) => {
+        const difficulty = event.target.value;
+        const stacks = Array.from(document.getElementsByClassName('stack'));
+
+        switch (difficulty) {
+            case 'level2':
+                discsQuantity = 4;
+
+                break;
+
+            case 'level3':
+                discsQuantity = 5;
+
+                break;
+
+            default:
+                discsQuantity = 3;
+
+                break;
+        }
+
+        stacks.forEach(item => item.remove());
+
+        startHanoi (createStacks(),createDiscs(discsQuantity));
+    }  
+
+    const resetHanoi = () => {
+        const stacks = Array.from(document.getElementsByClassName('stack'));
+        const counter = document.getElementById('control-counter');
+
+        //reset-counter
+        counter.innerText = '0';
+
+        //remove-old-stacks
+        stacks.forEach(item => item.remove());
+
+        //start-new-game
+        startHanoi(createStacks(),createDiscs(discsQuantity));
+    }  
+//END dynamic-content-main
+
+//START functions-call
+    startHanoi(createStacks(),createDiscs(discsQuantity));
+//END functions-call
+
+//START event-listeners
+    gameArea.addEventListener('click', stackClick);
+    
+    gameArea.addEventListener('click', switchClique);
+
+    levels.addEventListener('input', setDifficultyLevel)
+//END event-listeners
