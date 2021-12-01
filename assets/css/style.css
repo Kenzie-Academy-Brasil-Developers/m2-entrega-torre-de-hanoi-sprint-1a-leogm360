@@ -142,24 +142,33 @@
         justify-content: space-evenly;
         align-items: center;
         height: 15%;
-        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    }
+
+    .game--reset{
+        text-align: center;
+        height: 10%;
+    }
+
+    .reset--button{
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: red;
+        color: whitesmoke;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+    }
+
+    .reset--button:hover{
+        box-shadow: 0px 0px 10px 0px rgba(207, 0, 15, 1);
     }
 
     .game--area{
         display: flex;
         justify-content: space-around;
         align-items: flex-end;
-        height: 85%;
-    }
-
-    .stack{
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: black;
-        width: 20px;
-        height: 250px;
+        height: 65%;
     }
 
     .control--container:nth-child(1){
@@ -167,9 +176,27 @@
         align-items: center;
     }
 
+    .control--container:nth-child(2){
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .container--selected::before{
         content: "";
         width: 5px;
+    }
+
+    .stack{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #deb887;
+        border: 2px solid #964b00;
+        border-top-left-radius:10px;
+        border-top-right-radius: 10px;
+        width: 20px;
+        height: 150px;
     }
 
     .circle{
@@ -197,6 +224,48 @@
 /* END footer */
 
 /* START extras */
+    /* START Modal */
+        div.modal-vitory{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;
+            background-color: rgba(0, 0, 0, 0.404);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.box-modal{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            width: 50%;
+            height: 50%;
+        }
+
+        div.close-modal p {
+            background-color: rgb(255, 119, 119);
+            color: white;
+            border-radius: 50%;
+            padding: 5px 8px;
+            border: 1px solid black;
+        }
+
+        p{
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        div.hidden{
+            display: none;
+        }
+    /* END Modal */
 /* END extras */
 
 /* START media queries */

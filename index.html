@@ -86,12 +86,12 @@
                     </span>
                 </div>
 
-                <div class="control--container">
+                <div class="flex--row control--container">
                     <h2 class="subtitles">
                         Jogadas:
                     </h2>
 
-                    <span id="control-counter">
+                    <span id="control-counter" class="flex--row container--plays">
                         0
                     </span>
                 </div>
@@ -103,22 +103,27 @@
 
                      <select name="levels" id="levels" >
                         <option value="level1">
-                            1
+                            Nv 1
                         </option>
 
                          <option value="level2">
-                             2
+                            Nv 2
                          </option>
 
                          <option value="level3">
-                             3
+                            Nv 3
                         </option>
                      </select>
-                </div>     
+                </div> 
+            </div>
+
+            <div class="game--reset">
+                <button class="reset--button" type="button">
+                    Reset Game
+                </button>
             </div>
 
             <div id="game-area" class="game--area">
-            
             </div>
         </section>
     </main>
@@ -132,6 +137,17 @@
             &copy; Kenzie Academy Brasil - 2021
         </span>
     </footer>
+
+    <!-- START MODAL -->
+        <div id="modal" class="modal-vitory hidden">
+            <div class="box-modal">
+                <div class="close-modal">
+                    <p>X</p>
+                </div>
+                <p>você venceu!</p>
+            </div>
+        </div>
+    <!-- START MODAL -->
 
     <!-- START script -->
         <script src="./assets/js/torre-hanoi.js">

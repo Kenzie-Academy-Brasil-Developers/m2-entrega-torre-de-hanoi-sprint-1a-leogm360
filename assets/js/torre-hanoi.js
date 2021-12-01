@@ -1,6 +1,7 @@
 //START global-variables
     const gameArea = document.getElementById('game-area');
     const levels = document.getElementById('levels');
+    const resetButton = document.querySelector('.reset--button');
 
     let discsQuantity = 3;
     let difficultyLevel = 'level1';
@@ -60,10 +61,16 @@
 
     const checkVictory = () => {
         const stackThreeDiscsCount = document.getElementById("stack-3").childElementCount;
+        const modal = document.querySelector("#modal");
+        const buttonClose = document.querySelector(".close-modal p");
 
         if (stackThreeDiscsCount === discsQuantity) {
-            alert('voce venceu');
+            modal.classList.remove("hidden");
         }
+
+        buttonClose.addEventListener("click", function() {
+            modal.classList.add("hidden");
+        });
     }
 
     const countPlays = () => {
@@ -176,4 +183,6 @@
     gameArea.addEventListener('click', switchClique);
 
     levels.addEventListener('input', setDifficultyLevel)
+
+    resetButton.addEventListener('click', resetHanoi);
 //END event-listeners
