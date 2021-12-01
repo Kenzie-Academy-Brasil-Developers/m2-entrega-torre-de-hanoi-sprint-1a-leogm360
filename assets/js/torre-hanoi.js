@@ -1,12 +1,12 @@
 const arrayColors = ["blue", "red", "orange", "yellow", "pink", "gray"];
 const gameArea = document.querySelector("#game-area");
 let contador = 0;
+let nivel = 3;
 
-function startHanoi() {
+function startHanoi(n) {
     addStack();
     addId();
-    addCircle(5, 170);
-    // stackClick();
+    addCircle(nivel, 170);
 }
 
 function addStack() {
@@ -67,18 +67,18 @@ function stackClick(e) {
         // arr[0].remove()
     }
 
-    switchClique(target)
+    switchClique(target, nivel)
 
-    const textoVitoria = document.querySelector("#victory")
+    // const textoVitoria = document.querySelector("#victory")
 
-    if (numerateIdTwo.childNodes.length === 3) {
-        textoVitoria.innerHTML = 'Voce venceu!'
-    }
+    // if (numerateIdTwo.childNodes.length === 3) {
+    //     textoVitoria.innerHTML = 'Voce venceu!'
+    // }
 }
 
 const contadorH2 = document.querySelector("#contador")
 
-function switchClique(e) {
+function switchClique(e, n) {
     //Variables
     const circleToPut = selectedCircle.firstChild;
    
@@ -92,8 +92,8 @@ function switchClique(e) {
         //check-empty-stack
         if(stackedCircles === 0){
             e.appendChild(circleToPut);
-            contador++;
-            contadorH2.innerHTML = contador;
+            // contador++;
+            // contadorH2.innerHTML = contador;
         }
 
         else{
@@ -105,27 +105,23 @@ function switchClique(e) {
             circleToPutWidth < circleTopStackedWidth ? e.appendChild(circleToPut) : null;
 
             //counter
-            contador++;
-            contadorH2.innerHTML = contador;
+            // contador++;
+            // contadorH2.innerHTML = contador;
         }
     }
-
-    // if (e.className === "stack") {
-    //     if (e.children.length >= 0) {
-    //         arr.length > 0 ? e.appendChild(arr  [0]) : false
-           
-    //         if (e.children[0].clientWidth < e.lastElementChild.clientWidth) {
-    //             paiEl.appendChild(arr[0])
-    //             verif = false
-    //         } else {
-    //             e.appendChild(arr[0])
-    //             contador++
-    //             contadorH2.innerHTML = contador
-    //             verif = false
-    //         }
-    //         arr.pop()
-    //     }
-    // }
+    victory(n);
 }
 
-startHanoi();
+function victory(n) {
+    const tower3 = document.querySelector("#select-2");
+    const modal = document.querySelector("#modal");
+    const buttonClose = document.querySelector(".close-modal p");
+    if(tower3.childNodes.length === n){
+        modal.classList.remove("hidden");
+    }
+    buttonClose.addEventListener("click", function() {
+        modal.classList.add("hidden");
+    });
+}
+
+startHanoi(nivel);
