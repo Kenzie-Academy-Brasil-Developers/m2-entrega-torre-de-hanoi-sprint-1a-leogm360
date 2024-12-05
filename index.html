@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/img/hanoi-tower-favicon.ico" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Torre de Hanoi</title>
+</head>
+<body>
+    <header class="flex--row header">
+        <figure class="header__logo">
+            <img class="logo--image" src="./assets/img/hanoi-tower-logo.jpg" alt="Jogo da torre de hanoi" />
+            <figcaption class="logo--caption">Torre de Hanoi</figcaption>
+        </figure>
+
+        <h1 class="titles header__title">Torre de Hanoi</h1>
+    </header>
+    
+    <main class="main">
+        <section class="main-mobile-message">
+            <h2 class="subtitles">
+                Coloque o dispositivo em posição de Landscape para jogar
+            </h2>
+        </section>
+
+        <section class="main__info">
+            <article class="info--article">
+                <div class="article--container">
+                    <h2 class="subtitles container--title">O que é a Torre de Hanoi?</h2>
+
+                    <blockquote class="container--quotes">
+                        "O jogo da Torre de Hanói é um quebra-cabeça que consiste em uma base contendo três pinos e, dentro deles, três ou mais discos de diâmetro diferentes, podendo ainda ter cores destoantes e vibrantes."
+                    </blockquote>
+
+                    <blockquote class="container--quotes">
+                        "O quebra-cabeça foi inventado pelo matemático francês Édouard Lucas. Ele teve inspiração de uma lenda para construir o jogo das Torres de Hanói em 1883. Já seu nome foi inspirado na torre símbolo da cidade de Hanói, no Vietnã."
+                    </blockquote>
+
+                    <span class="container--citation">
+                        <cite class="citation--semantic">
+                            <a class="semantic--anchor" href="https://pt.wikipedia.org/wiki/Torre_de_Han%C3%B3i" title="Fonte informativa do jogo torre de hanoi">
+                                - Wikipedia
+                            </a>
+                        </cite>
+                    </span>
+                </div>
+    
+                <div class="article--container">
+                    <h2 class="subtitles container--title">Regras do jogo:</h2>
+
+                    <ul class="container--unordered">
+                        <li class="unordered--item">Só é permitido movimentar um disco por vez;</li>
+
+                        <li class="unordered--item">Um disco maior não pode ficar sobre um menor;</li>
+
+                        <li class="unordered--item">Só é permitido movimentar o disco no topo da pilha.</li>
+                    </ul>
+                </div>
+
+                <div class="article--container">
+                    <h2 class="subtitles container--title">Como jogar:</h2>
+
+                    <ol class="container--ordered">
+                        <li class="ordered--item">Clique uma vez no disco se quer movimentar para selecioná-lo;</li>
+
+                        <li class="ordered--item">Clique uma vez no pino onde quer depositar o disco selecionado.</li>
+
+                        <li class="ordered--item">Repita o processo até que todos os discos sejam transferidos para o terceiro pino.</li>
+                    </ol>
+                </div>
+            </article>
+        </section>
+
+        <section class="main__game">
+            <div id="game-control" class="flex--row game--control">
+                <div class="flex--row control--container">
+                    <h2 class="subtitles">
+                        Selecionado:
+                    </h2>
+                    
+                    <span id="control-selected" class="flex--row container--selected">
+                    </span>
+                </div>
+
+                <div class="flex--row control--container">
+                    <h2 class="subtitles">
+                        Jogadas:
+                    </h2>
+
+                    <span id="control-counter" class="flex--row container--plays">
+                        0
+                    </span>
+                </div>
+
+                <div class="control--container">
+                    <label for="levels" class="subtitles">
+                        Nível de dificuldade:
+                    </label>
+
+                     <select name="levels" id="levels" >
+                        <option value="level1">
+                            Nv 1
+                        </option>
+
+                         <option value="level2">
+                            Nv 2
+                         </option>
+
+                         <option value="level3">
+                            Nv 3
+                        </option>
+                     </select>
+                </div> 
+            </div>
+
+            <div class="game--reset">
+                <button class="reset--button" type="button">
+                    Reset Game
+                </button>
+            </div>
+
+            <div id="game-area" class="game--area">
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p class="footer__creators">
+            Criado por: <cite>Leonardo Moraes</cite> e <cite>Lucas Dutra</cite>
+        </p>
+
+        <span class="footer__copyright">
+            &copy; Kenzie Academy Brasil - 2021
+        </span>
+    </footer>
+
+    <!-- START MODAL -->
+        <div id="modal" class="modal-vitory hidden">
+            <div class="box-modal">
+                <div class="close-modal">
+                    <p>X</p>
+                </div>
+                <p>você venceu!</p>
+            </div>
+        </div>
+    <!-- START MODAL -->
+
+    <!-- START script -->
+        <script src="./assets/js/torre-hanoi.js">
+        </script>
+    <!-- END script -->
+</body>
+</html>
